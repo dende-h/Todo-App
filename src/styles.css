@@ -1,0 +1,9 @@
+main {
+  display: flex;
+  width: 900px; /* 例としての幅の定義 */
+}
+
+main .column {
+  flex: 1;
+  text-align: center;
+}

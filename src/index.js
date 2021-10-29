@@ -1,1 +1,1 @@
-console.log("コミットしました");
+import "./styles.css";
