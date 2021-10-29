@@ -59,3 +59,7 @@ button {
   border-radius: 20px;
   margin: 4px;
 }
+
+.list-row {
+  text-align: left;
+}
