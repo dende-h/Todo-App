@@ -9,11 +9,13 @@ main div {
   text-align: center;
 }
 input {
+  width: 300px;
   border-radius: 5px;
   border: none;
   padding: 6px 16px;
   outline: none;
   margin-top: 4px;
+  margin-right: 6px;
 }
 
 button {
@@ -25,18 +27,29 @@ button {
   color: white;
 }
 
+button:hover {
+  cursor: pointer;
+  background-color: rgb(255, 51, 51);
+  color: black;
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
 .title {
   margin-top: 5px;
   font-weight: bold;
   color: rgb(82, 82, 82);
 }
 .input-area {
-  width: 622px;
-  height: 35px;
-  background-color: cornsilk;
+  width: 646px;
+  height: 40px;
+  background-color: rgb(252, 235, 170);
   text-align: center;
   margin: 4px;
   border-radius: 10px;
+  padding-top: 3px;
 }
 
 .todo-area {
@@ -44,6 +57,7 @@ button {
   min-height: 100px;
   border-radius: 20px;
   margin: 4px;
+  padding: 4px;
 }
 
 .doing-area {
@@ -51,6 +65,7 @@ button {
   min-height: 100px;
   border-radius: 20px;
   margin: 4px;
+  padding: 4px;
 }
 
 .done-area {
@@ -58,8 +73,26 @@ button {
   min-height: 100px;
   border-radius: 20px;
   margin: 4px;
+  padding: 4px;
 }
 
 .list-row {
   text-align: left;
+  background-color: rgb(255, 248, 239);
+  margin: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 150px;
+  border-radius: 2px;
+}
+
+.delete-area {
+  width: 646px;
+  height: 45px;
+  background-color: rgb(185, 114, 243);
+  border-radius: 10px;
+  margin: 4px;
+  padding-top: 4px;
+  text-align: center;
+  font-size: 25px;
 }
