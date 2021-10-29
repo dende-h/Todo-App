@@ -1,9 +1,61 @@
-main {
-  display: flex;
-  width: 900px; /* 例としての幅の定義 */
+body {
+  font-family: fantasy;
 }
 
-main .column {
-  flex: 1;
+main div {
+  width: 200px;
+  display: inline-block;
+  vertical-align: top;
   text-align: center;
+}
+input {
+  border-radius: 5px;
+  border: none;
+  padding: 6px 16px;
+  outline: none;
+  margin-top: 4px;
+}
+
+button {
+  border-radius: 5px;
+  border: none;
+  padding: 4px 16px;
+  margin-top: 4px;
+  background-color: rgb(252, 135, 154);
+  color: white;
+}
+
+.title {
+  margin-top: 5px;
+  font-weight: bold;
+  color: rgb(82, 82, 82);
+}
+.input-area {
+  width: 628px;
+  height: 35px;
+  background-color: cornsilk;
+  text-align: center;
+  margin: 4px;
+  border-radius: 10px;
+}
+
+.todo-area {
+  background-color: rgb(159, 255, 255);
+  min-height: 100px;
+  border-radius: 20px;
+  margin: 4px;
+}
+
+.doing-area {
+  background-color: rgb(253, 255, 154);
+  min-height: 100px;
+  border-radius: 20px;
+  margin: 4px;
+}
+
+.done-area {
+  background-color: thistle;
+  min-height: 100px;
+  border-radius: 20px;
+  margin: 4px;
 }

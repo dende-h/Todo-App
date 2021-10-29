@@ -7,15 +7,19 @@
 
   <body>
     <h1>TODOボード</h1>
+    <div class="input-area">
+      <input id="input-todo" placeholder="TODOを入力" />
+      <button id="add-button">付箋を追加</button>
+    </div>
     <main>
-      <div class="column">
-        <p>やること</p>
+      <div class="todo-area">
+        <p class="title">TODO</p>
       </div>
-      <div class="column">
-        <p>進行中</p>
+      <div class="doing-area">
+        <p class="title">DOING</p>
       </div>
-      <div class="column">
-        <p>やったこと</p>
+      <div class="done-area">
+        <p class="title">DONE</p>
       </div>
       <script src="src/index.js"></script>
     </main>
