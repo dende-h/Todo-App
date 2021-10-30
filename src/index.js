@@ -22,8 +22,17 @@ document
 const addTodo = (text) => {
   const div = document.createElement("div");
   div.className = "list-row";
+  div.id = "drag-target";
+  div.draggable = "true";
+  div.ondragstart = "event.dataTransfer.setData('text/plain',null)";
+  console.log(div);
   const p = document.createElement("p");
   p.innerText = text;
   div.appendChild(p);
   return div;
 };
+/**
+ * <div class="list-row" id="drag-target" draggable="true">
+ *  <p>aaa</p>
+ * </div>
+ */

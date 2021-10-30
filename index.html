@@ -15,12 +15,17 @@
       <p class="title">DELETE AREA</p>
     </div>
     <main>
-      <div class="todo-area">
+      <div class="todo-area dropzone">
         <p class="title">TODO</p>
         <div id="todo-list">
-          <div class="list-row">
+          <div
+            class="list-row"
+            id="drag-target"
+            draggable="true"
+            ondragstart="event.dataTransfer.setData('text/plain',null)"
+          >
             <p>
-              TODOですdddddddddddddduuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuudddddddddddu
+              TODOです
             </p>
           </div>
           <div class="list-row">
@@ -28,11 +33,11 @@
           </div>
         </div>
       </div>
-      <div class="doing-area">
+      <div class="doing-area dropzone">
         <p class="title">DOING</p>
         <div id="doing-list"></div>
       </div>
-      <div class="done-area">
+      <div class="done-area dropzone">
         <p class="title">DONE</p>
         <div id="done-list"></div>
       </div>
