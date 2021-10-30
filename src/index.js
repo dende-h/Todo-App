@@ -36,3 +36,75 @@ const addTodo = (text) => {
  *  <p>aaa</p>
  * </div>
  */
+
+//ドラッグ＆ドロップ
+/* events fired on the draggable target */
+var dragged;
+
+document.addEventListener("drag", (e) => {}, false);
+
+document.addEventListener(
+  "dragstart",
+  (e) => {
+    // store a ref. on the dragged elem
+    dragged = e.target;
+    // make it half transparent
+    e.target.style.opacity = 0.5;
+  },
+  false
+);
+document.addEventListener(
+  "dragend",
+  (e) => {
+    // reset the transparency
+    e.target.style.opacity = "";
+  },
+  false
+);
+
+/* events fired on the drop targets */
+document.addEventListener(
+  "dragover",
+  (e) => {
+    // prevent default to allow drop
+    e.preventDefault();
+  },
+  false
+);
+
+document.addEventListener(
+  "dragenter",
+  (e) => {
+    // highlight potential drop target when the draggable element enters it
+    if (e.target.className === "dropzone") {
+      e.target.style.background = "purple";
+    }
+  },
+  false
+);
+
+document.addEventListener(
+  "dragleave",
+  (e) => {
+    // reset background of potential drop target when the draggable element leaves it
+    if (e.target.className === "dropzone") {
+      e.target.style.background = "";
+    }
+  },
+  false
+);
+
+document.addEventListener(
+  "drop",
+  (e) => {
+    // prevent default action (open as link for some elements)
+    e.preventDefault();
+    // move dragged elem to the selected drop target
+    if (e.target.className === "dropzone") {
+      e.target.style.background = "";
+      dragged.parentNode.removeChild(dragged);
+      e.target.appendChild(dragged);
+    }
+  },
+  false
+);
