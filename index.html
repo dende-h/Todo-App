@@ -18,30 +18,28 @@
       <div class="todo-area dropzone">
         <p class="title">TODO</p>
         <div id="todo-list">
-          <div
-            class="list-row"
-            id="drag-target"
-            draggable="true"
-            ondragstart="event.dataTransfer.setData('text/plain',null)"
-          >
-            <p>
-              TODOです
-            </p>
+          <div class="list-row" id="drag-target" draggable="true">
+            <p>TODOです</p>
           </div>
           <div class="list-row">
             <p>Todoです</p>
           </div>
         </div>
       </div>
-      <div class="doing-area dropzone">
+      <div class="doing-area">
         <p class="title">DOING</p>
-        <div id="doing-list"></div>
+        <div
+          class="dropzone"
+          id="doing-list"
+          ondragover="onDragOver(event);"
+          ondrop="onDrop(event)"
+        ></div>
       </div>
       <div class="done-area dropzone">
         <p class="title">DONE</p>
         <div id="done-list"></div>
       </div>
-      <script src="src/index.js"></script>
+      <script type="text/javascript" src="src/index.js"></script>
     </main>
   </body>
 </html>

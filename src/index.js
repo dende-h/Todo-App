@@ -5,12 +5,16 @@ const clickButton = () => {
   //id="input-todo"に入力した内容をinputTextとして変数に取得
   const inputText = document.getElementById("input-todo").value;
 
-  //id="input-todo"に入力した内容を消去
-  document.getElementById("input-todo").value = "";
+  if (inputText) {
+    //id="input-todo"に入力した内容を消去
+    document.getElementById("input-todo").value = "";
 
-  //id="todo-list"の中に入力したTODOを追加
-  const todo = addTodo(inputText);
-  document.getElementById("todo-list").appendChild(todo);
+    //id="todo-list"の中に入力したTODOを追加
+    const todo = addTodo(inputText);
+    document.getElementById("todo-list").appendChild(todo);
+  } else {
+    alert("TODOを入力してください");
+  }
 };
 
 //id="add-button"のクリック時にclickButton関数を動かす
@@ -31,6 +35,41 @@ const addTodo = (text) => {
   div.appendChild(p);
   return div;
 };
+
+document.addEventListener("dragstart", (event) => onDragStart(event));
+
+const onDragStart = (event) => {};
+
+document.addEventListener("dragover", (event) => onDragOver(event));
+// document.addEventListener("dragover", () => onDragOver());
+
+const onDragOver = (event) => {
+  event.preventDefault();
+};
+
+document.addEventListener("drop", (event) => onDrop(event));
+
+const onDrop = (event) => {
+  event.preventDefault();
+  console.log("drop");
+  deletElement();
+};
+
+const deletElement = () => {
+  const div = document.getElementById("drag-target");
+  div.parentNode.removeChild(div);
+};
+//   const id = event.dataTransfer.getData("text");
+
+//   const draggableElement = document.getElementById(id);
+
+//   const dropzone = event.target;
+
+//   dropzone.appendChild(draggableElement);
+
+//   event.dataTransfer.clearData();
+// };
+
 /**
  * <div class="list-row" id="drag-target" draggable="true">
  *  <p>aaa</p>
@@ -39,72 +78,72 @@ const addTodo = (text) => {
 
 //ドラッグ＆ドロップ
 /* events fired on the draggable target */
-var dragged;
+// let dragged;
 
-document.addEventListener("drag", (e) => {}, false);
+// document.addEventListener("drag", (event) => {}, false);
 
-document.addEventListener(
-  "dragstart",
-  (e) => {
-    // store a ref. on the dragged elem
-    dragged = e.target;
-    // make it half transparent
-    e.target.style.opacity = 0.5;
-  },
-  false
-);
-document.addEventListener(
-  "dragend",
-  (e) => {
-    // reset the transparency
-    e.target.style.opacity = "";
-  },
-  false
-);
+// document.addEventListener(
+//   "dragstart",
+//   (event) => {
+//     // store a ref. on the dragged elem
+//     dragged = event.target;
+//     // make it half transparent
+//     event.target.style.opacity = 0.5;
+//   },
+//   false
+// );
+// document.addEventListener(
+//   "dragend",
+//   (event) => {
+//     // reset the transparency
+//     event.target.style.opacity = "";
+//   },
+//   false
+// );
 
-/* events fired on the drop targets */
-document.addEventListener(
-  "dragover",
-  (e) => {
-    // prevent default to allow drop
-    e.preventDefault();
-  },
-  false
-);
+// /* events fired on the drop targets */
+// document.addEventListener(
+//   "dragover",
+//   (event) => {
+//     // prevent default to allow drop
+//     event.preventDefault();
+//   },
+//   false
+// );
 
-document.addEventListener(
-  "dragenter",
-  (e) => {
-    // highlight potential drop target when the draggable element enters it
-    if (e.target.className === "dropzone") {
-      e.target.style.background = "purple";
-    }
-  },
-  false
-);
+// document.addEventListener(
+//   "dragenter",
+//   (event) => {
+//     // highlight potential drop target when the draggable element enters it
+//     if (event.target.className === "dropzone") {
+//       event.target.style.background = "purple";
+//     }
+//   },
+//   false
+// );
 
-document.addEventListener(
-  "dragleave",
-  (e) => {
-    // reset background of potential drop target when the draggable element leaves it
-    if (e.target.className === "dropzone") {
-      e.target.style.background = "";
-    }
-  },
-  false
-);
+// document.addEventListener(
+//   "dragleave",
+//   (event) => {
+//     // reset background of potential drop target when the draggable element leaves it
+//     if (event.target.className === "dropzone") {
+//       event.target.style.background = "";
+//     }
+//   },
+//   false
+// );
 
-document.addEventListener(
-  "drop",
-  (e) => {
-    // prevent default action (open as link for some elements)
-    e.preventDefault();
-    // move dragged elem to the selected drop target
-    if (e.target.className === "dropzone") {
-      e.target.style.background = "";
-      dragged.parentNode.removeChild(dragged);
-      e.target.appendChild(dragged);
-    }
-  },
-  false
-);
+// document.addEventListener(
+//   "drop",
+//   (event) => {
+//     // prevent default action (open as link for some elements)
+//     event.preventDefault();
+//     // move dragged elem to the selected drop target
+//     if (event.target.className === "dropzone") {
+//       event.target.style.background = "";
+//       dragged.parentNode.removeChild(dragged);
+//       event.target.appendChild(dragged);
+//     }
+//   },
+//   false
+// );
