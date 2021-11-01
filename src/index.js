@@ -89,9 +89,7 @@ document.addEventListener(
     // store a ref. on the dragged elem
     dragged = event.target;
     // make it half transparent
-    console.log(dragged);
     event.target.style.opacity = 0.5;
-    event.target.style.cursor = "grabbing";
   },
   false
 );
@@ -101,7 +99,6 @@ document.addEventListener(
   (event) => {
     // reset the transparency
     event.target.style.opacity = "";
-    event.target.style.cursor = "";
   },
   false
 );
@@ -112,7 +109,6 @@ document.addEventListener(
   (event) => {
     // prevent default to allow drop
     event.preventDefault();
-    event.target.style.cursor = "";
   },
   false
 );
@@ -121,8 +117,22 @@ document.addEventListener(
   "dragenter",
   (event) => {
     // highlight potential drop target when the draggable element enters it
-    if (event.target.className === "dropzone") {
-      event.target.style.background = "purple";
+    switch (event.target.className) {
+      case todoE:
+        event.target.style.background = "rgb(54, 255, 255)";
+        break;
+      case doingE:
+        event.target.style.background = "rgb(252, 255, 85)";
+        break;
+      case doneE:
+        event.target.style.background = "rgb(255, 111, 255";
+        break;
+      case delE:
+        event.target.parentNode.style.background = "rgb(210, 154, 255)";
+        event.target.style.background = "rgb(210, 154, 255)";
+        break;
+      default:
+        break;
     }
   },
   false
@@ -132,8 +142,22 @@ document.addEventListener(
   "dragleave",
   (event) => {
     // reset background of potential drop target when the draggable element leaves it
-    if (event.target.className === "doing-area dropzone") {
-      event.target.style.cursor = "";
+    switch (event.target.className) {
+      case todoE:
+        event.target.style.background = "";
+        break;
+      case doingE:
+        event.target.style.background = "";
+        break;
+      case doneE:
+        event.target.style.background = "";
+        break;
+      case delE:
+        event.target.parentNode.style.background = "";
+        event.target.style.background = "";
+        break;
+      default:
+        break;
     }
   },
   false
@@ -145,30 +169,26 @@ document.addEventListener(
     // prevent default action (open as link for some elements)
     event.preventDefault();
     // move dragged elem to the selected drop target
+    let dropZone;
+    const onDrop = () => {
+      event.target.style.background = "";
+      dragged.parentNode.removeChild(dragged);
+      dropZone = event.target.children[1];
+      dropZone.appendChild(dragged);
+    };
     switch (event.target.className) {
-      case "todo-area dropzone":
-        event.target.style.background = "";
-        dragged.parentNode.removeChild(dragged);
-        const dropZone0 = event.target.children[1];
-        console.log(dropZone0);
-        dropZone0.appendChild(dragged);
+      case todoE:
+        onDrop();
         break;
-      case "doing-area dropzone":
-        event.target.style.background = "";
-        dragged.parentNode.removeChild(dragged);
-        const dropZone1 = event.target.children[1];
-        console.log(dropZone1);
-        dropZone1.appendChild(dragged);
+      case doingE:
+        onDrop();
         break;
-      case "done-area dropzone":
-        event.target.style.background = "";
-        dragged.parentNode.removeChild(dragged);
-        const dropZone2 = event.target.children[1];
-        console.log(dropZone2);
-        dropZone2.appendChild(dragged);
+      case doneE:
+        onDrop();
         break;
-      case "title dropzone-d":
+      case delE:
         event.target.style.background = "";
+        event.target.parentNode.style.background = "";
         dragged.parentNode.removeChild(dragged);
         break;
       default:
@@ -177,3 +197,10 @@ document.addEventListener(
   },
   false
 );
+const dropErea = {
+  todoE: "todo-area dropzone",
+  doingE: "doing-area dropzone",
+  doneE: "done-area dropzone",
+  delE: "title dropzone-d"
+};
+const { todoE, doingE, doneE, delE } = dropErea;

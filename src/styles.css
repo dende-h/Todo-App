@@ -69,7 +69,7 @@ p {
 }
 
 .done-area {
-  background-color: thistle;
+  background-color: rgb(255, 193, 255);
 }
 
 .list-row {
@@ -104,6 +104,9 @@ p {
 
 .dropzone:hover {
   cursor: grab;
+}
+#drag-target:active {
+  cursor: grabbing;
 }
 
 .dropzone-d:hover {
