@@ -12,28 +12,25 @@
       <button id="add-button">付箋を追加</button>
     </div>
     <div class="delete-area">
-      <p class="title">DELETE AREA</p>
+      <p class="title dropzone-d">DELETE AREA</p>
     </div>
     <main>
       <div class="todo-area dropzone">
         <p class="title">TODO</p>
         <div id="todo-list">
-          <div class="list-row" id="drag-target" draggable="true">
+          <div
+            class="list-row"
+            id="drag-target"
+            draggable="true"
+            ondragstart="event.dataTransfer.setData('text/plain',null)"
+          >
             <p>TODOです</p>
-          </div>
-          <div class="list-row">
-            <p>Todoです</p>
           </div>
         </div>
       </div>
-      <div class="doing-area">
+      <div class="doing-area dropzone">
         <p class="title">DOING</p>
-        <div
-          class="dropzone"
-          id="doing-list"
-          ondragover="onDragOver(event);"
-          ondrop="onDrop(event)"
-        ></div>
+        <div id="doing-list"></div>
       </div>
       <div class="done-area dropzone">
         <p class="title">DONE</p>
