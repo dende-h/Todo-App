@@ -12,22 +12,17 @@ const clickButton = () => {
     //id="todo-list"の中に入力したTODOを追加
     const todo = addTodo(inputText);
     document.getElementById("todo-list").appendChild(todo);
+    todo.children[0].addEventListener("dblclick", (event) => onDblClick(event));
+    seveData(todo.children[0]);
   } else {
     alert("TODOを入力してください");
   }
-  document
-    .getElementById("todoText")
-    .addEventListener("dblclick", (event) => onDblClick(event));
 };
 
 //id="add-button"のクリック時にclickButton関数を動かす
 document
   .getElementById("add-button")
   .addEventListener("click", () => clickButton());
-
-document
-  .getElementById("todoText")
-  .addEventListener("dblclick", (event) => onDblClick(event));
 
 //<div>タグの生成<p>の生成　=>　入力した内容を<p>タグに入れ<div>タグの子要素にして返却
 const addTodo = (text) => {
@@ -45,7 +40,9 @@ const addTodo = (text) => {
 
 const onDblClick = (event) => {
   const editTarget = event.target;
+  console.log(editTarget);
   const div = editTarget.parentNode;
+  console.log(div);
   const todoText = div.children[0].innerText;
   const edit = document.createElement("textarea");
   edit.value = todoText;
@@ -58,12 +55,11 @@ const onDblClick = (event) => {
   const onEdit = (event) => {
     const editText = event.target;
     const newDiv = addTodo(editText.value);
-    console.log(newDiv);
     editText.parentNode.appendChild(newDiv);
     editText.parentNode.removeChild(editText);
-    document
-      .getElementById("todoText")
-      .addEventListener("dblclick", (event) => onDblClick(event));
+    newDiv.children[0].addEventListener("dblclick", (event) =>
+      onDblClick(event)
+    );
   };
 };
 
@@ -165,6 +161,8 @@ document.addEventListener(
       event.target.style.background = "";
       dragged.parentNode.removeChild(dragged);
       dropZone = event.target.children[1];
+      console.log(dropZone);
+      console.log(dragged);
       dropZone.appendChild(dragged);
     };
     switch (event.target.className) {
@@ -195,3 +193,14 @@ const dropErea = {
   delE: "title dropzone-d"
 };
 const { todoE, doingE, doneE, delE } = dropErea;
+
+const seveData = () => {
+  const lists = document.querySelectorAll("p");
+  let todos = [];
+  lists.forEach((p) => {
+    todos.push({
+      text: p.innerText
+    });
+  });
+  localStorage.setItem("todos", JSON.stringify(todos));
+};
