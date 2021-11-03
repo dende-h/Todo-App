@@ -15,12 +15,19 @@ const clickButton = () => {
   } else {
     alert("TODOを入力してください");
   }
+  document
+    .getElementById("todoText")
+    .addEventListener("dblclick", (event) => onDblClick(event));
 };
 
 //id="add-button"のクリック時にclickButton関数を動かす
 document
   .getElementById("add-button")
   .addEventListener("click", () => clickButton());
+
+document
+  .getElementById("todoText")
+  .addEventListener("dblclick", (event) => onDblClick(event));
 
 //<div>タグの生成<p>の生成　=>　入力した内容を<p>タグに入れ<div>タグの子要素にして返却
 const addTodo = (text) => {
@@ -29,52 +36,36 @@ const addTodo = (text) => {
   div.id = "drag-target";
   div.draggable = "true";
   div.ondragstart = "event.dataTransfer.setData('text/plain',null)";
-  console.log(div);
   const p = document.createElement("p");
+  p.id = "todoText";
   p.innerText = text;
   div.appendChild(p);
   return div;
 };
 
-// document.addEventListener("dragstart", (event) => onDragStart(event));
-
-// const onDragStart = (event) => {};
-
-// document.addEventListener("dragover", (event) => onDragOver(event));
-// // document.addEventListener("dragover", () => onDragOver());
-
-// const onDragOver = (event) => {
-//   event.preventDefault();
-// };
-
-// document.addEventListener("drop", (event) => onDrop(event));
-
-// const onDrop = (event) => {
-//   event.preventDefault();
-//   console.log("drop");
-//   deletElement();
-// };
-
-// const deletElement = () => {
-//   const div = document.getElementById("drag-target");
-//   div.parentNode.removeChild(div);
-// };
-//   const id = event.dataTransfer.getData("text");
-
-//   const draggableElement = document.getElementById(id);
-
-//   const dropzone = event.target;
-
-//   dropzone.appendChild(draggableElement);
-
-//   event.dataTransfer.clearData();
-// };
-
-/**
- * <div class="list-row" id="drag-target" draggable="true">
- *  <p>aaa</p>
- * </div>
- */
+const onDblClick = (event) => {
+  const editTarget = event.target;
+  const div = editTarget.parentNode;
+  const todoText = div.children[0].innerText;
+  const edit = document.createElement("textarea");
+  edit.value = todoText;
+  edit.id = "edit-zone";
+  div.parentNode.appendChild(edit);
+  div.parentNode.removeChild(div);
+  document
+    .getElementById("edit-zone")
+    .addEventListener("change", (event) => onEdit(event));
+  const onEdit = (event) => {
+    const editText = event.target;
+    const newDiv = addTodo(editText.value);
+    console.log(newDiv);
+    editText.parentNode.appendChild(newDiv);
+    editText.parentNode.removeChild(editText);
+    document
+      .getElementById("todoText")
+      .addEventListener("dblclick", (event) => onDblClick(event));
+  };
+};
 
 //ドラッグ＆ドロップ
 /* events fired on the draggable target */

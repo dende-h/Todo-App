@@ -8,7 +8,7 @@ main div {
   vertical-align: top;
   text-align: center;
 }
-input {
+#input-todo {
   width: 300px;
   border-radius: 5px;
   border: none;
@@ -35,6 +35,17 @@ button:hover {
 
 p {
   overflow-wrap: break-word;
+}
+
+#edit-zone {
+  overflow-wrap: break-word;
+  text-align: left;
+  background-color: rgb(255, 248, 239);
+  width: 150px;
+  height: 60px;
+  border-radius: 2px;
+  font-family: fantasy;
+  font-size: 16px;
 }
 
 .title {
