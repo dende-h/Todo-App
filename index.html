@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
 
-<head>
-	<title>Parcel Sandbox</title>
-	<meta charset="UTF-8" />
-</head>
-
-<body>
-	<div id="app"></div>
-
-	<script src="src/index.js">
-	</script>
-</body>
-
+  <body>
+    <h1>TODOボード</h1>
+    <div class="input-area">
+      <input id="input-todo" placeholder="TODOを入力" />
+      <button id="add-button">付箋を貼る</button>
+    </div>
+    <div class="delete-area">
+      <p class="title dropzone-d">DELETE AREA</p>
+    </div>
+    <main>
+      <div class="todo-area dropzone">
+        <p class="title">TODO</p>
+        <div id="todo-list"></div>
+      </div>
+      <div class="doing-area dropzone">
+        <p class="title">DOING</p>
+        <div id="doing-list"></div>
+      </div>
+      <div class="done-area dropzone">
+        <p class="title">DONE</p>
+        <div id="done-list"></div>
+      </div>
+      <script type="text/javascript" src="src/index.js"></script>
+    </main>
+    <h4>Read me</h4>
+    【主な実装機能】<br />
+    TODO入力フォームにタスクを入力して"付箋を貼る"でTODOエリアに追加<br />
+    作業中はドラッグ＆ドロップでDOINGエリアに付箋を移動<br />
+    終わったタスクはDONEエリアに付箋を移動<br />
+    タスクを消去したい場合はDELETEエリアにドロップで削除<br />
+    タスクを編集したい場合はタスクのテキストをダブルクリックで編集<br />
+    編集後に入力エリア外をクリックすれば編集確定
+  </body>
 </html>
